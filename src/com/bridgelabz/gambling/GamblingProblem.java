@@ -4,7 +4,9 @@ import java.io.*;
 public class GamblingProblem {
 	public static int stake= 100;
 	public static int bet = 1;
-	
+	public static int currentBalance=0;
+	public static int currentWinning[];
+
 	 public static int WinOrLose() {
 		
 		int result = (int) Math.floor(Math.random()*2);
@@ -21,7 +23,7 @@ public class GamblingProblem {
 	}
 	 public static int WinOrLoseLimit() {
 		 
-		if(stake>=150)
+		if(currentBalance>=150)
 		{
 			System.out.println("Maximum reached! Stop playing");
 		}
@@ -33,12 +35,26 @@ public class GamblingProblem {
 			System.out.println("Continue playing");
 		return 0;
 	}
-	
+	public static int getTotalAmount() {
+		int daysPlayed=20;
+			int totalWinnings=0;
+		for (int i=0;i<daysPlayed;i++) {
+			int cashPerDay=stake;
+			WinOrLoseLimit();
+			totalWinnings=totalWinnings+cashPerDay;
+		}
+		System.out.println("Total money won after"+i+"is "+totalWinnings);
+	}
 	
 	public static void main(String[] args) {
-		int balance=stake;
+		int currentBalance=stake;
+		System.out.println("Want to check if you won or not?");
 		WinOrLose();
+		System.out.println("Total winnings check");
 		WinOrLoseLimit();
+		getTotalAmount();
+		
+		
 	}
 }
 		
