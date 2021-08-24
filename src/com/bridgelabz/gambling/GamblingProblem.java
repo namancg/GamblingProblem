@@ -1,15 +1,23 @@
 package com.bridgelabz.gambling;
 import java.util.*;
 public class GamblingProblem {
-
+	static final int stake= 100;
+	static final int bet = 1;
+	
+	public class WinOrLose{
+		
+		int result = (int) Math.floor(Math.random()*100);
+		if(result < 50) {
+			System.out.println("WOn the bet!");
+		}
+		else
+		{
+			System.out.println("Lost the bet");
+		}
+	}
+	
 	public static void main(String[] args) {
-		int stake= 0;
-		int bet = 0;
-		System.out.println("Enter the Stake:");
-		Scanner sc= new Scanner(System.in);
-		stake=sc.nextInt();
-		System.out.println("Enter the Bet:");
-		bet=sc.nextInt();
+		
 	}
 
 }
