@@ -66,11 +66,33 @@ public class GamblingProblem {
 		System.out.println("Games Won: "+gamesWon+".\n Won $"+totalWinnings);
 		System.out.println("Games Lost: "+gamesLost+".\n Lost $"+totalLost);
 		}
+	public static void luckiestAndUnluckiestDay() {
+		int maxWinnings=0, maxLost=0, luckiestDay=0, unluckiestDay=0;
+		for (int i = 1; i <= daysPlayed; i++) {
+			currentStake = stake;
+			WinOrLose();
+			if(currentStake >= stake*1.5) {
+				if(maxWinnings < (currentStake-stake)) {
+					luckiestDay=i;
+					maxWinnings = currentStake-stake;
+				}
+			}
+			else {
+				if(maxLost < (stake-currentStake)) {
+					unluckiestDay=i;
+					maxLost = stake-currentStake;
+				}
+			}
+		}
+		System.out.println("Luckiest Day : Day "+luckiestDay);
+		System.out.println("Unluckiest Day : Day "+unluckiestDay);
+	}
 	
 	
 	public static void main(String[] args) {
 		int currentBalance=stake;
 		playMonth();
+		luckiestAndUnluckiestDay();
 	}
 }
 		
