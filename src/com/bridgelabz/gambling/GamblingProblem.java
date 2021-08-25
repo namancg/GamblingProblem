@@ -67,32 +67,55 @@ public class GamblingProblem {
 		System.out.println("Games Lost: "+gamesLost+".\n Lost $"+totalLost);
 		}
 	public static void luckiestAndUnluckiestDay() {
-		int maxWinnings=0, maxLost=0, luckiestDay=0, unluckiestDay=0;
-		for (int i = 1; i <= daysPlayed; i++) {
-			currentStake = stake;
-			WinOrLose();
-			if(currentStake >= stake*1.5) {
-				if(maxWinnings < (currentStake-stake)) {
-					luckiestDay=i;
-					maxWinnings = currentStake-stake;
+		int maxWinnings=0, minWinnings=9999, luckiestMonth=0, unluckiestMonth=0 ,totalStake=0 ,monthsPlayed=12,totalEarning=0;
+		for(int j=0;j<monthsPlayed; j++)
+			totalStake=0;
+		{
+			for (int i = 1; i <= daysPlayed; i++) {
+				currentStake = stake;
+				WinOrLose();
+				totalStake += currentStake;
+				if(maxWinnings<totalEarning) {
+					luckiestMonth = i;
+					maxWinnings=totalEarning;
 				}
-			}
-			else {
-				if(maxLost < (stake-currentStake)) {
-					unluckiestDay=i;
-					maxLost = stake-currentStake;
+				if(minWinnings>totalEarning) {
+					unluckiestMonth = i;
+					minWinnings=totalEarning;
 				}
 			}
 		}
-		System.out.println("Luckiest Day : Day "+luckiestDay);
-		System.out.println("Unluckiest Day : Day "+unluckiestDay);
+		System.out.println("Luckiest Month "+luckiestMonth);
+		System.out.println("Unluckiest Month "+unluckiestMonth);
 	}
+	public static void nextMonth() {
+		
+		int gamesWon=0, gamesLost=0, monthsPlayed=0;
+		while(true) {
+			monthsPlayed++;
+			for (int i = 1; i <= daysPlayed; i++) {
+				currentStake = stake;
+				WinOrLose();
+				if(currentStake >= stake*1.5) {
+					gamesWon++;
+				}
+				else {
+					gamesLost++;
+				}
+			}
+			if(gamesWon<gamesLost)
+				break;
+		}
+		
+		System.out.println("Months played: "+monthsPlayed);
+		
+	}
+
 	
 	
 	public static void main(String[] args) {
-		int currentBalance=stake;
-		playMonth();
-		luckiestAndUnluckiestDay();
+		
+		nextMonth();
 	}
 }
 		
